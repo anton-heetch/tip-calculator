@@ -1,0 +1,56 @@
+.TipResult {
+  max-width: 414px;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 20px;
+  background: hsl(183, 100%, 15%);
+  color: #fff;
+  padding: 60px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 920px) {
+    margin-top: 40px;
+  }
+
+  @media (max-width: 415px) {
+    padding-top: 40px;
+  }
+
+  button {
+    margin-top: 50px;
+  }
+}
+
+.total,
+.tipAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 60px;
+  }
+
+  & > div {
+    &:last-child {
+      font-size: 50px;
+      line-height: 1;
+      font-weight: 700;
+      color: #26cab2;
+
+      @media (max-width: 415px) {
+        font-size: 34px;
+      }
+    }
+
+    &:first-child {
+      span:last-child {
+        color: #78aaad;
+        font-size: 14px;
+        margin-top: -8px;
+      }
+    }
+  }
+}

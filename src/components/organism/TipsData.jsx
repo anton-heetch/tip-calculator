@@ -39,7 +39,6 @@ function TipsData() {
     radioButtons.forEach((el) => {
       el.classList.remove('selected')
     })
-    // setSelectedTip('')
   }
 
   const handleWheel = (e) => {

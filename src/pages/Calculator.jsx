@@ -1,6 +1,7 @@
 import { ReactComponent as Logo } from '../assets/svg/logo.svg'
-import TipsData from '../components/organism/TipsData'
 import { CalculationContextProvider } from '../context/CalculationContext'
+import TipsResult from '../components/organism/TipsResult'
+import TipsData from '../components/organism/TipsData'
 
 function Calculator() {
   return (
@@ -10,6 +11,7 @@ function Calculator() {
 
         <div className="content">
           <TipsData />
+          <TipsResult />
         </div>
       </div>
     </CalculationContextProvider>

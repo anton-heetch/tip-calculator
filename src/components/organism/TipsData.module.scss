@@ -1,5 +1,6 @@
 .TipsData {
   max-width: 386px;
+  width: 100%;
 
   label {
     display: block;
@@ -18,6 +19,14 @@
 
         input {
           width: 118px;
+        }
+
+        @media (max-width: 920px) {
+          justify-content: center;
+
+          input {
+            width: calc(118px + (50% - 126px));
+          }
         }
       }
 
