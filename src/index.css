@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +8,85 @@ html::-webkit-scrollbar {
   display: none;
 }
 
+body {
+  font-family: 'Space Mono', sans-serif;
+  margin: 0;
+  background: #c5e4e7;
+  height: 100vh;
+}
+
 button {
   outline: none;
   border: none;
+}
+
+input {
+  border: none;
+  background: #f3f8fb;
+  border-radius: 5px;
+  font-family: inherit;
+  font-weight: 700;
+  color: #12393a;
+  font-size: 24px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+input::-webkit-input-placeholder {
+  text-align: center;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  text-align: right;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number']:focus {
+  outline: none !important;
+  border: 2px solid hsl(172, 67%, 45%);
+}
+
+input[type='button'] {
+  color: #fff;
+  background: hsl(183, 100%, 15%);
+  cursor: pointer;
+}
+
+input[type='button']:hover {
+  background: #9fe8df;
+}
+
+input[type='button'].selected {
+  background: hsl(172, 67%, 45%);
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 68px;
+}
+
+.content {
+  background: #fff;
+  border-radius: 20px;
+  margin-top: 88px;
+  padding: 30px;
+  max-width: 920px;
+}
+
+@media (max-width: 920px) {
+  .mainContainer {
+    margin-top: 32px;
+  }
+
+  .content {
+    margin-top: 24px;
+  }
 }

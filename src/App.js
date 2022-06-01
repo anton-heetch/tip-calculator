@@ -1,7 +1,9 @@
+import Calculator from './pages/Calculator'
+
 function App() {
   return (
     <>
-      <h1>Tip Calculator</h1>
+      <Calculator />
     </>
   )
 }
