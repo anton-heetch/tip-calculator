@@ -31,7 +31,7 @@ function Input(props) {
 Input.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.number,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
@@ -42,7 +42,7 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'text',
   className: '',
-  value: '',
+  value: 0,
   placeholder: '',
   onChange: () => {},
   onClick: () => {},

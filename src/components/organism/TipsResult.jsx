@@ -1,7 +1,11 @@
+import { useContext } from 'react'
 import classes from './TipsResult.module.scss'
 import Button from '../molecules/Button'
+import CalculationContext from '../../context/CalculationContext'
 
 function TipsResult() {
+  const { tipAmount, totalAmount } = useContext(CalculationContext)
+
   return (
     <div className={classes.TipResult}>
       <div className="wrapper">
@@ -11,7 +15,7 @@ function TipsResult() {
             <br /> <span>/ person</span>
           </div>
           <div>
-            <span>$4.25</span>
+            <span>${tipAmount}</span>
           </div>
         </div>
         <div className={classes.total}>
@@ -20,7 +24,7 @@ function TipsResult() {
             <br /> <span>/ person</span>
           </div>
           <div>
-            <span>$32.79</span>
+            <span>${totalAmount}</span>
           </div>
         </div>
       </div>

@@ -20,19 +20,19 @@ function TipsData() {
     })
 
     e.target.classList.toggle('selected')
-    setSelectedTip(e.target.value)
+    setSelectedTip(Number(e.target.value))
   }
 
   const handlerTipChange = (e) => {
-    setSelectedTip(e.target.value)
+    setSelectedTip(Number(e.target.value))
   }
 
   const handleBillChange = (e) => {
-    setBillAmount(e.target.value)
+    setBillAmount(Number(e.target.value))
   }
 
   const handlePeopleChange = (e) => {
-    setNumberOfPeople(e.target.value)
+    setNumberOfPeople(Number(e.target.value))
   }
 
   const handleCustomTipFocus = () => {
@@ -65,31 +65,31 @@ function TipsData() {
           <Input
             type="button"
             className="radio"
-            value="5%"
+            value={5}
             onClick={handlerClick}
           />
           <Input
             type="button"
             className="radio"
-            value="10%"
+            value={10}
             onClick={handlerClick}
           />
           <Input
             type="button"
             className="radio"
-            value="15%"
+            value={15}
             onClick={handlerClick}
           />
           <Input
             type="button"
             className="radio"
-            value="25%"
+            value={25}
             onClick={handlerClick}
           />
           <Input
             type="button"
             className="radio"
-            value="50%"
+            value={50}
             onClick={handlerClick}
           />
           <Input
