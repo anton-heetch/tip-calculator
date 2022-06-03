@@ -4,29 +4,56 @@ import { createContext, useEffect, useMemo, useState } from 'react'
 const CalculationContext = createContext()
 
 export function CalculationContextProvider({ children }) {
-  const [selectedTip, setSelectedTip] = useState(0)
-  const [billAmount, setBillAmount] = useState(0)
-  const [numberOfPeople, setNumberOfPeople] = useState(0)
-  const [tipAmount, setTipAmount] = useState(0.0)
-  const [totalAmount, setTotalAmount] = useState(0.0)
+  const [selectedTip, setSelectedTip] = useState(undefined)
+  const [customTip, setCustomTip] = useState(undefined)
+  const [billAmount, setBillAmount] = useState(undefined)
+  const [numberOfPeople, setNumberOfPeople] = useState(undefined)
+  const [tipAmount, setTipAmount] = useState(undefined)
+  const [totalAmount, setTotalAmount] = useState(undefined)
 
   useEffect(() => {
-    setTipAmount(billAmount * (selectedTip / 100))
-    setTotalAmount(tipAmount / numberOfPeople)
-  }, [selectedTip, billAmount, numberOfPeople])
+    if (billAmount && (selectedTip || customTip))
+      setTipAmount(
+        Number(
+          (billAmount * ((selectedTip + customTip) / 100)).toFixed(2),
+        ),
+      )
+
+    if (tipAmount && numberOfPeople)
+      setTotalAmount(Number((tipAmount / numberOfPeople).toFixed(2)))
+  })
+
+  const resetForm = () => {
+    setSelectedTip(undefined)
+    setCustomTip(undefined)
+    setBillAmount(undefined)
+    setNumberOfPeople(undefined)
+    setTipAmount(undefined)
+    setTotalAmount(undefined)
+  }
 
   const data = useMemo(
     () => ({
       selectedTip,
       setSelectedTip,
+      customTip,
+      setCustomTip,
       billAmount,
       setBillAmount,
       numberOfPeople,
       setNumberOfPeople,
       tipAmount,
       totalAmount,
+      resetForm,
     }),
-    [selectedTip, billAmount, numberOfPeople, tipAmount, totalAmount],
+    [
+      selectedTip,
+      customTip,
+      billAmount,
+      numberOfPeople,
+      tipAmount,
+      totalAmount,
+    ],
   )
 
   return (

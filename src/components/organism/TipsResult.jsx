@@ -4,7 +4,9 @@ import Button from '../molecules/Button'
 import CalculationContext from '../../context/CalculationContext'
 
 function TipsResult() {
-  const { tipAmount, totalAmount } = useContext(CalculationContext)
+  const { tipAmount, totalAmount, resetForm } = useContext(
+    CalculationContext,
+  )
 
   return (
     <div className={classes.TipResult}>
@@ -28,7 +30,7 @@ function TipsResult() {
           </div>
         </div>
       </div>
-      <Button title="Reset" />
+      <Button title="Reset" onClick={resetForm} />
     </div>
   )
 }

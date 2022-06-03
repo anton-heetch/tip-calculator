@@ -18,23 +18,10 @@ body {
 button {
   outline: none;
   border: none;
-  background: hsl(172, 67%, 45%);
-  border-radius: 5px;
-  height: 48px;
   text-transform: uppercase;
-  font-weight: 700;
-  color: hsl(183, 100%, 15%);
   font-family: inherit;
   font-size: 20px;
   cursor: pointer;
-}
-
-button:hover {
-  background: #9fe8df;
-}
-
-button:active {
-  background: #55a9a0;
 }
 
 input {
@@ -47,10 +34,6 @@ input {
   font-size: 24px;
   text-align: center;
   padding: 0 10px;
-}
-
-input::-webkit-input-placeholder {
-  text-align: center;
 }
 
 input[type='number'] {
@@ -68,20 +51,8 @@ input[type='number']:focus {
   border: 2px solid hsl(172, 67%, 45%);
 }
 
-input[type='button'] {
-  color: #fff;
-  background: hsl(183, 100%, 15%);
-  cursor: pointer;
-}
-
-input[type='button']:hover {
-  background: #9fe8df;
-  color: hsl(183, 100%, 15%);
-}
-
-input[type='button'].selected {
-  background: hsl(172, 67%, 45%);
-  color: hsl(183, 100%, 15%);
+input[type='number']:focus::-webkit-input-placeholder {
+  color: transparent;
 }
 
 .mainContainer {

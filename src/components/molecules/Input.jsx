@@ -42,7 +42,7 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'text',
   className: '',
-  value: 0,
+  value: undefined,
   placeholder: '',
   onChange: () => {},
   onClick: () => {},

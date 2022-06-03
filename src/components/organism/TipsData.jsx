@@ -1,17 +1,22 @@
 import { useContext } from 'react'
 import Input from '../molecules/Input'
+import Button from '../molecules/Button'
 import classes from './TipsData.module.scss'
 import CalculationContext from '../../context/CalculationContext'
 
 function TipsData() {
   const {
     setSelectedTip,
+    customTip,
+    setCustomTip,
     billAmount,
     setBillAmount,
     numberOfPeople,
     setNumberOfPeople,
+    tipAmount,
   } = useContext(CalculationContext)
 
+  const tipsAmount = [5, 10, 15, 25, 50]
   const radioButtons = document.querySelectorAll('.radio')
 
   const handlerClick = (e) => {
@@ -20,11 +25,16 @@ function TipsData() {
     })
 
     e.target.classList.toggle('selected')
-    setSelectedTip(Number(e.target.value))
+    setSelectedTip(Number(e.target.innerText.match(/\d+/)))
   }
 
   const handlerTipChange = (e) => {
-    setSelectedTip(Number(e.target.value))
+    radioButtons.forEach((el) => {
+      el.classList.remove('selected')
+    })
+
+    setSelectedTip(undefined)
+    setCustomTip(Number(e.target.value))
   }
 
   const handleBillChange = (e) => {
@@ -35,11 +45,7 @@ function TipsData() {
     setNumberOfPeople(Number(e.target.value))
   }
 
-  const handleCustomTipFocus = () => {
-    radioButtons.forEach((el) => {
-      el.classList.remove('selected')
-    })
-  }
+  const handleCustomTipFocus = () => {}
 
   const handleWheel = (e) => {
     e.target.blur()
@@ -52,6 +58,7 @@ function TipsData() {
         <form id="billAmount">
           <Input
             type="number"
+            placeholder="0"
             value={billAmount}
             onChange={handleBillChange}
             onWheel={handleWheel}
@@ -62,41 +69,19 @@ function TipsData() {
       <label htmlFor="tipAmount">
         Select Tip %
         <form id="tipAmount" name="tipAmount">
-          <Input
-            type="button"
-            className="radio"
-            value={5}
-            onClick={handlerClick}
-          />
-          <Input
-            type="button"
-            className="radio"
-            value={10}
-            onClick={handlerClick}
-          />
-          <Input
-            type="button"
-            className="radio"
-            value={15}
-            onClick={handlerClick}
-          />
-          <Input
-            type="button"
-            className="radio"
-            value={25}
-            onClick={handlerClick}
-          />
-          <Input
-            type="button"
-            className="radio"
-            value={50}
-            onClick={handlerClick}
-          />
+          {tipsAmount.map((value) => (
+            <Button
+              key={value}
+              buttonClass="radio"
+              title={`${value}%`}
+              onClick={handlerClick}
+            />
+          ))}
           <Input
             type="number"
             placeholder="Custom"
+            value={customTip}
             onChange={handlerTipChange}
-            onFocus={handleCustomTipFocus}
             onWheel={handleWheel}
           />
         </form>
@@ -107,6 +92,7 @@ function TipsData() {
         <form id="peopleAmount">
           <Input
             type="number"
+            placeholder="0"
             value={numberOfPeople}
             onChange={handlePeopleChange}
             onWheel={handleWheel}
