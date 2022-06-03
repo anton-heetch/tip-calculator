@@ -14,15 +14,22 @@ export function CalculationContextProvider({ children }) {
 
   // Dynamically change results
   useEffect(() => {
-    if (billAmount && selectedTip)
+    if (billAmount && selectedTip && numberOfPeople)
+      setTotalAmount(
+        Number(
+          (billAmount * (selectedTip / 100) + billAmount) /
+            numberOfPeople,
+        ).toFixed(2),
+      )
+    else setTotalAmount('0.00')
+
+    if (numberOfPeople && billAmount && selectedTip)
       setTipAmount(
-        Number(billAmount * (selectedTip / 100)).toFixed(2),
+        Number(
+          (billAmount * (selectedTip / 100)) / numberOfPeople,
+        ).toFixed(2),
       )
     else setTipAmount('0.00')
-
-    if (tipAmount && numberOfPeople)
-      setTotalAmount(Number(tipAmount / numberOfPeople).toFixed(2))
-    else setTotalAmount('0.00')
   })
 
   // Disable selected class on Tip Buttons
