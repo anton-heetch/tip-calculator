@@ -33,7 +33,7 @@ input {
   color: #12393a;
   font-size: 24px;
   text-align: center;
-  padding: 0 10px;
+  padding: 0 15px;
 }
 
 input[type='number'] {
@@ -53,6 +53,46 @@ input[type='number']:focus {
 
 input[type='number']:focus::-webkit-input-placeholder {
   color: transparent;
+}
+
+.peopleAmount.err {
+  border: 2px solid #b57b6d;
+}
+
+.peopleAmount.err + span {
+  display: initial;
+}
+
+.errMes {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: -44px;
+  color: #b57b6d;
+}
+
+#billAmount,
+#peopleAmount {
+  position: relative;
+}
+
+#billAmount::before,
+#peopleAmount::before {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+  width: 18px;
+  height: 18px;
+}
+
+#billAmount::before {
+  content: url('assets/svg/icon-dollar.svg');
+}
+
+#peopleAmount::before {
+  content: url('assets/svg/icon-person.svg');
 }
 
 .mainContainer {

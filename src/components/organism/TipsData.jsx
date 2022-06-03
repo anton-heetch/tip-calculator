@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import Input from '../molecules/Input'
 import Button from '../molecules/Button'
 import classes from './TipsData.module.scss'
@@ -7,46 +7,58 @@ import CalculationContext from '../../context/CalculationContext'
 function TipsData() {
   const {
     setSelectedTip,
-    customTip,
-    setCustomTip,
     billAmount,
     setBillAmount,
     numberOfPeople,
     setNumberOfPeople,
-    tipAmount,
+    radioButtonsReset,
+    dynamicKey,
+    dynamicCorr,
+    setDynamicCorr,
   } = useContext(CalculationContext)
 
   const tipsAmount = [5, 10, 15, 25, 50]
-  const radioButtons = document.querySelectorAll('.radio')
+  const peopleAmountInput = document.querySelector('.peopleAmount')
 
-  const handlerClick = (e) => {
-    radioButtons.forEach((el) => {
-      el.classList.remove('selected')
-    })
+  const handleTipClick = (e) => {
+    // Clear Custom Tip input value
+    setDynamicCorr(Math.random())
+
+    // Reset Tip Buttons state 'selected'
+    radioButtonsReset()
 
     e.target.classList.toggle('selected')
     setSelectedTip(Number(e.target.innerText.match(/\d+/)))
+
+    // Check's value presence
+    if (!peopleAmountInput.value)
+      peopleAmountInput.classList.add('err')
   }
 
-  const handlerTipChange = (e) => {
-    radioButtons.forEach((el) => {
-      el.classList.remove('selected')
-    })
+  const handleTipChange = (e) => {
+    // Reset Tip Buttons state 'selected'
+    radioButtonsReset()
+    setSelectedTip(Number(e.target.value))
 
-    setSelectedTip(undefined)
-    setCustomTip(Number(e.target.value))
+    // Check's value presence
+    if (!peopleAmountInput.value)
+      peopleAmountInput.classList.add('err')
   }
 
   const handleBillChange = (e) => {
     setBillAmount(Number(e.target.value))
+
+    // Check's value presence
+    if (!peopleAmountInput.value)
+      peopleAmountInput.classList.add('err')
   }
 
   const handlePeopleChange = (e) => {
     setNumberOfPeople(Number(e.target.value))
+    e.target.classList.remove('err')
   }
 
-  const handleCustomTipFocus = () => {}
-
+  // Disable scroll number inside input[type=number]
   const handleWheel = (e) => {
     e.target.blur()
   }
@@ -57,7 +69,9 @@ function TipsData() {
         Bill
         <form id="billAmount">
           <Input
+            key={dynamicKey}
             type="number"
+            className="billAmount"
             placeholder="0"
             value={billAmount}
             onChange={handleBillChange}
@@ -74,14 +88,14 @@ function TipsData() {
               key={value}
               buttonClass="radio"
               title={`${value}%`}
-              onClick={handlerClick}
+              onClick={handleTipClick}
             />
           ))}
           <Input
+            key={dynamicKey + dynamicCorr}
             type="number"
             placeholder="Custom"
-            value={customTip}
-            onChange={handlerTipChange}
+            onChange={handleTipChange}
             onWheel={handleWheel}
           />
         </form>
@@ -91,12 +105,15 @@ function TipsData() {
         Number of People
         <form id="peopleAmount">
           <Input
+            key={dynamicKey}
             type="number"
+            className="peopleAmount"
             placeholder="0"
             value={numberOfPeople}
             onChange={handlePeopleChange}
             onWheel={handleWheel}
           />
+          <span className="errMes">Can&apos;t be zero</span>
         </form>
       </label>
     </div>

@@ -17,14 +17,16 @@
         flex-wrap: wrap;
         gap: 16px;
 
-        input {
+        input,
+        button {
           width: 118px;
         }
 
         @media (max-width: 920px) {
           justify-content: center;
 
-          input {
+          input,
+          button {
             width: calc(118px + (50% - 126px));
           }
         }
