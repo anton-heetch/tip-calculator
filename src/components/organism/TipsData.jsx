@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import Input from '../molecules/Input'
 import Button from '../molecules/Button'
 import classes from './TipsData.module.scss'
@@ -11,14 +11,21 @@ function TipsData() {
     setBillAmount,
     numberOfPeople,
     setNumberOfPeople,
-    radioButtonsReset,
     dynamicKey,
     dynamicCorr,
     setDynamicCorr,
   } = useContext(CalculationContext)
 
   const tipsAmount = [5, 10, 15, 25, 50]
-  const peopleAmountInput = document.querySelector('.peopleAmount')
+  const peopleRef = useRef(null)
+  const buttonRef = useRef([])
+
+  // Disable selected class on Tip Buttons
+  const radioButtonsReset = () => {
+    buttonRef.current.forEach((el) => {
+      el.classList.remove('selected')
+    })
+  }
 
   const handleTipClick = (e) => {
     // Clear Custom Tip input value
@@ -31,8 +38,8 @@ function TipsData() {
     setSelectedTip(Number(e.target.innerText.match(/\d+/)))
 
     // Check's value presence
-    if (!peopleAmountInput.value)
-      peopleAmountInput.classList.add('err')
+    if (!peopleRef.current.value)
+      peopleRef.current.classList.add('err')
   }
 
   const handleTipChange = (e) => {
@@ -41,16 +48,16 @@ function TipsData() {
     setSelectedTip(Number(e.target.value))
 
     // Check's value presence
-    if (!peopleAmountInput.value)
-      peopleAmountInput.classList.add('err')
+    if (!peopleRef.current.value)
+      peopleRef.current.classList.add('err')
   }
 
   const handleBillChange = (e) => {
     setBillAmount(Number(e.target.value))
 
     // Check's value presence
-    if (!peopleAmountInput.value)
-      peopleAmountInput.classList.add('err')
+    if (!peopleRef.current.value)
+      peopleRef.current.classList.add('err')
   }
 
   const handlePeopleChange = (e) => {
@@ -89,6 +96,7 @@ function TipsData() {
               buttonClass="radio"
               title={`${value}%`}
               onClick={handleTipClick}
+              buttonRef={(el) => (buttonRef.current[value] = el)}
             />
           ))}
           <Input
@@ -112,6 +120,7 @@ function TipsData() {
             value={numberOfPeople}
             onChange={handlePeopleChange}
             onWheel={handleWheel}
+            inputRef={(el) => (peopleRef.current = el)}
           />
           <span className="errMes">Can&apos;t be zero</span>
         </form>

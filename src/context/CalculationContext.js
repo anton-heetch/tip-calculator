@@ -32,14 +32,6 @@ export function CalculationContextProvider({ children }) {
     else setTipAmount('0.00')
   })
 
-  // Disable selected class on Tip Buttons
-  const radioButtons = document.querySelectorAll('.radio')
-  const radioButtonsReset = () => {
-    radioButtons.forEach((el) => {
-      el.classList.remove('selected')
-    })
-  }
-
   // Reset calculation
   const resetForm = () => {
     setSelectedTip(undefined)
@@ -47,7 +39,6 @@ export function CalculationContextProvider({ children }) {
     setNumberOfPeople(undefined)
     setTipAmount(undefined)
     setTotalAmount(undefined)
-    radioButtonsReset()
     setDynamicKey(Math.random())
   }
 
@@ -63,7 +54,6 @@ export function CalculationContextProvider({ children }) {
       dynamicKey,
       dynamicCorr,
       setDynamicCorr,
-      radioButtonsReset,
       resetForm,
     }),
     [selectedTip, billAmount, numberOfPeople, tipAmount, totalAmount],

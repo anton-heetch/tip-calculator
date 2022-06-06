@@ -10,6 +10,7 @@ function Input(props) {
     onClick,
     onFocus,
     onWheel,
+    inputRef,
   } = props
 
   return (
@@ -23,6 +24,7 @@ function Input(props) {
         onClick={onClick}
         onFocus={onFocus}
         onWheel={onWheel}
+        ref={inputRef}
       />
     </>
   )
@@ -37,6 +39,7 @@ Input.propTypes = {
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
   onWheel: PropTypes.func,
+  inputRef: PropTypes.func,
 }
 
 Input.defaultProps = {
@@ -48,6 +51,7 @@ Input.defaultProps = {
   onClick: () => {},
   onFocus: () => {},
   onWheel: () => {},
+  inputRef: () => {},
 }
 
 export default Input
